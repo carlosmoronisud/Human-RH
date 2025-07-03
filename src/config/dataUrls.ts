@@ -1,35 +1,45 @@
-//Interface models
+// src/config/dataUrls.ts
 
+/**
+ * Arquivo centralizado para gerenciar todas as URLs de API (Google Apps Scripts) 
+ * da aplicação da Plataforma de RH.
+ */
+
+// --- URLs Base dos Nossos Scripts ---
+
+// 1. URL do script que era de "Visualizações" e foi reaproveitado para as VAGAS.
+const VAGAS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw0izhDadafEU5bZ-x_aMtS58QsGLbJmyZOj4hAZG19YOT6yaUBXNRqPgz6WlzNP7A6Xw/exec';
+
+// 2. URL do script MESTRE, que busca dados de múltiplas abas (Colaboradores, Equipe, etc).
+const PROJETO_RH_MULTISHEET_URL = 'https://script.google.com/macros/s/AKfycbyanWEyw6WfEDEuvZARLx32f4D-cpd4F86d8xbkEPbKmVdl9F5VbGnobBYsPBK-28S_/exec';
+
+
+// --- Interface de Tipagem ---
+
+// Define o formato do nosso objeto de URLs, contendo apenas o que o projeto de RH precisa.
 interface DataUrls {
-  visualizacoes: string;
-  publicacoes: string;
-  sobreProjetoPrincipal: string;
-  sobreProjetoMembros: string;
-  sobreProjetoFinanciadores: string;
-}
-interface DataUrls {
-  visualizacoes: string;
-  publicacoes: string;
-  sobreProjetoPrincipal: string; 
-  sobreProjetoMembros: string;   
-  sobreProjetoFinanciadores: string; 
+  vagas: string;
+  colaboradores: string;
+  equipe: string;
+  infoProjeto: string;
 }
 
 
-// URLs das implementações das planilhas Visualizacoes e Publicacoes do Google Apps Script 
-const VISUALIZACOES_FORM_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw0izhDadafEU5bZ-x_aMtS58QsGLbJmyZOj4hAZG19YOT6yaUBXNRqPgz6WlzNP7A6Xw/exec';
-const PUBLICACOES_FORM_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbztOolc0gm0WEw5xM67AvE0GpG2dJjnJc8R2iB5qjVnCsiyO2SX94nFMm8LuhXUToRe3w/exec';
+// --- Objeto Exportado ---
 
-// URL base para o Apps Script para a planilha "sobre o projeto"
-const SOBRE_PROJETO_APPS_SCRIPT_BASE_URL = 'https://script.google.com/macros/s/AKfycbyL9MN40PTHHWO98jotfp5gcF-5JO2rbgjSIBaJytwMXaBkhl9CJSiVaz-bV1IUVLrH/exec';
-
-// Exportando as URLs como um objeto do tipo DataUrls
-// Isso permite que outras partes do aplicativo acessem facilmente as URLs configuradas
+// Exporta o objeto final com todas as URLs prontas para serem usadas na aplicação.
 export const dataUrls: DataUrls = {
-  visualizacoes: VISUALIZACOES_FORM_APPS_SCRIPT_URL,
-  publicacoes: PUBLICACOES_FORM_APPS_SCRIPT_URL,
-  // URLs para a página "Sobre o Projeto", usando o parâmetro 'sheet'
-  sobreProjetoPrincipal: `${SOBRE_PROJETO_APPS_SCRIPT_BASE_URL}?sheet=sobre`,
-  sobreProjetoMembros: `${SOBRE_PROJETO_APPS_SCRIPT_BASE_URL}?sheet=membros`,
-  sobreProjetoFinanciadores: `${SOBRE_PROJETO_APPS_SCRIPT_BASE_URL}?sheet=financiadores`,
+  // URL para a página de Vagas
+  vagas: VAGAS_SCRIPT_URL,
+
+  // As 3 URLs abaixo usam o mesmo script mestre, apenas mudando o parâmetro '?sheet='
+  
+  // URL para a página de Colaboradores (funcionários), buscando da aba 'membros'
+  colaboradores: `${PROJETO_RH_MULTISHEET_URL}?sheet=membros`,
+
+  // URL para a página da Equipe de desenvolvimento, buscando da aba 'financiadores'
+  equipe: `${PROJETO_RH_MULTISHEET_URL}?sheet=financiadores`,
+
+  // URL para a página de Informações do Projeto, buscando da aba 'sobre'
+  infoProjeto: `${PROJETO_RH_MULTISHEET_URL}?sheet=sobre`,
 };

@@ -1,41 +1,19 @@
+// src/components/Header.tsx
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import Navbar from './Navbar';
 
 const Header: React.FC = () => {
   return (
-    <header className="bg-gray-900 text-white p-4 shadow-md">
-      <div className="container mx-auto flex justify-between items-center">
-        <Link to="/" className="text-2xl font-bold text-blue-400 hover:text-blue-300 transition duration-300">
-          DebateViz
-        </Link>
-        <nav>
-          <ul className="flex space-x-6">
-            <li>
-              <Link to="/" className="hover:text-blue-400 transition duration-300">
-                Início {/* HomePage */}
-              </Link>
-            </li>
-            <li>
-              <Link to="/visualizacoes" className="hover:text-blue-400 transition duration-300">
-                Visualizações {/* VisualizationsPage */}
-              </Link>
-            </li>
-            <li>
-              <Link to="/publicacoes" className="hover:text-blue-400 transition duration-300">
-                Publicações
-              </Link>
-            </li>
-            <li>
-              <Link to="/membros" className="hover:text-blue-400 transition duration-300">
-                Equipe {/* MembersPage */}
-              </Link>
-            </li>
-            {/* Futuras implementações */}
-          </ul>
-        </nav>
-      </div>
-    </header>
+    <motion.header
+      className="w-full bg-white shadow-md sticky top-0 z-50"
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+    >
+      <Navbar />
+    </motion.header>
   );
 };
 

@@ -1,31 +1,37 @@
 // src/App.tsx
+
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import VisualizacoesPage from './pages/VisualizacoesPage';
-import PublicacoesPage from './pages/PublicacoesPage';
 
-import HomePage from './pages/HomePage';       
-import MembrosPage from './pages/MembrosPage';
+// Importando o Layout que contém o Header e o Footer
+import Layout from './components/Layout';
+
+// Importando TODAS as nossas páginas
+import HomePage from './pages/HomePage';
+import VagasPage from './pages/VagasPage';
+import ColaboradoresPage from './pages/ColaboradoresPage';
+import EquipePage from './pages/EquipePage';
+import InfoProjetoPage from './pages/InfoProjetoPage'; // Página que ainda vamos criar
 
 const App: React.FC = () => {
   return (
     <Router>
-      <div className="flex flex-col min-h-screen bg-gray-100">
-        <Header />
-        <main className="flex-grow">
-          <Routes>
-            <Route path="/" element={<HomePage />} /> {/* Página inicial */}
-            <Route path="/visualizacoes" element={<VisualizacoesPage />} />   {/* Página de Visualizações */}
-            <Route path="/publicacoes" element={<PublicacoesPage />} /> {/* Página de Publicações */}
-              <Route path="/membros" element={<MembrosPage />} /> {/* Página de Membros */}
-              
-            
-          </Routes>
-        </main>
-        <Footer />
-      </div>
+      <Routes>
+        {/* A rota principal usa o Layout. Todas as rotas filhas 
+            serão renderizadas dentro dele, ganhando o Header e o Footer. */}
+        <Route path="/" element={<Layout />}>
+          {/* A página inicial */}
+          <Route index element={<HomePage />} />
+
+          {/* As outras páginas da nossa plataforma */}
+          <Route path="vagas" element={<VagasPage />} />
+          <Route path="colaboradores" element={<ColaboradoresPage />} />
+          <Route path="equipe" element={<EquipePage />} />
+          <Route path="info-projeto" element={<InfoProjetoPage />} />
+          
+          {/* Rotas antigas como /visualizacoes e /publicacoes foram removidas */}
+        </Route>
+      </Routes>
     </Router>
   );
 };
