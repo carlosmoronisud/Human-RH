@@ -8,7 +8,7 @@
 // --- URLs Base dos Nossos Scripts ---
 
 // 1. URL do script que era de "Visualizações" e foi reaproveitado para as VAGAS.
-const VAGAS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz1K4Emum9dpdcQyhFbic426iC9IIFm_6bzg_H-gCKkio_aRDBU1CzZeHpTeosEIhI2LA/exec';
+const VAGAS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz5Zpt90YtqzP4OCIvnH1qFgxIZvTOYjRw6nCk1OSCxnMwN3bVe2xwtltAY_c5QDCYeyQ/exec';
 
 // 2. URL do script MESTRE, que busca dados de múltiplas abas (Colaboradores, Equipe, etc).
 const PROJETO_RH_MULTISHEET_URL = 'https://script.google.com/macros/s/AKfycbyanWEyw6WfEDEuvZARLx32f4D-cpd4F86d8xbkEPbKmVdl9F5VbGnobBYsPBK-28S_/exec';
